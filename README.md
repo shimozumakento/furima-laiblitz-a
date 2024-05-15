@@ -23,56 +23,57 @@ Things you may want to cover:
 
 * ...
 
-## user テーブル
-| column           | type         | options                  |
-|------------------|--------------|--------------------------|
-| user_id          | integer      | null: false              |
-| nickname         | string       | null: false              |
-| email            | string       | null: false              |
-| password         | string       | null: false unique: true |
-| first_name       | string       | null: false              |
-| second_name      | string       | null: false              |
-| first_name_kana  | string       | null: false              |
-| second_name_kana | string       | null: false              |
-| birthday         | date         | null: false              |
+## users テーブル
+| column            | type         | options                  |
+|-------------------|--------------|--------------------------|
+| nickname          | string       | null: false              |
+| email             | string       | null: false unique: true |
+| encrypted_password | string      | null: false              |
+| first_name        | string       | null: false              |
+| second_name       | string       | null: false              |
+| first_name_kana   | string       | null: false              |
+| second_name_kana  | string       | null: false              |
+| birthday          | date         | null: false              |
 
 has_many :products
-has_many :history
-has_many :address
+has_many :histories
 
-## product テーブル
+
+## products テーブル
 | column           | type          | options      |
 |------------------|---------------|--------------|
-| user_id          | integer       | null: false  |
+| user             | references    | null: false foreign_key: true |
 | product_name     | string        | null: false  |
 | description      | text          | null: false  |
 | category_id      | integer       | null: false  |
 | condition_id     | integer       | null: false  |
 | shipping_cost_id | integer       | null: false  |
 | shipping_area_id | integer       | null: false  |
-| shipping_days_id | integer       | null: false  |
+| shipping_day_id  | integer       | null: false  |
 | price            | integer       | null: false  |
 
 belongs_to :user
 has_one :history
 
-## address テーブル
+## addresses テーブル
 | column             | type      | options                |
 |--------------------|-----------|------------------------|
 | postal_code        | string    | null: false            |
-| prefecture         | string    | null: false            |
+| shipping_area_id   | integer   | null: false            |
 | city               | string    | null: false            |
 | street_address     | string    | null: false            |
-| building_name      | string    | null: false            |
-| phone_number       | integer   | null: false            |
+| building_name      | string    |                        |
+| phone_number       | string    | null: false            |
 
 belongs_to :user
+belongs_to :history
 
-## history テーブル
-| column            | type      | options                |
-|-------------------|-----------|------------------------|
-| product           | string    | null: false            |
-| user_id           | string    | null: false            |
+## histories テーブル
+| column            | type      | options                                 |
+|-------------------|-----------|-----------------------------------------|
+| product           | integer   | null: false foreign_key: true           |
+| user              | integer   | null: false foreign_key: true           |
 
 belongs_to :user
 belongs_to :product
+has_one :address
