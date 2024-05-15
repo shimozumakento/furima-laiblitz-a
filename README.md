@@ -24,53 +24,55 @@ Things you may want to cover:
 * ...
 
 ## user テーブル
-| column         | type         | options                  |
-|----------------|--------------|--------------------------|
-| UserID(PK)     | integer      | null: false              |
-| Nickname       | string       | null: false              |
-| Email          | string       | null: false              |
-| Password       | string       | null: false              |
-| FirstName      | string       | null: false unique: true |
-| SecondName     | string       | null: false              |
-| FirstNameKana  | string       | null: false              |
-| SecondNameKana | string       | null: false              |
-| BirthYear      | date         | null: false              |
-| BirthMonth     | date         | null: false              |
-| BirthDay       | date         | null: false              |
+| column           | type         | options                  |
+|------------------|--------------|--------------------------|
+| user_id          | integer      | null: false              |
+| nickname         | string       | null: false              |
+| email            | string       | null: false              |
+| password         | string       | null: false unique: true |
+| first_name       | string       | null: false              |
+| second_name      | string       | null: false              |
+| first_name_kana  | string       | null: false              |
+| second_name_kana | string       | null: false              |
+| birthday         | date         | null: false              |
 
-has_many :products, foreign_key: 'SellerID'
-has_many :transactions, foreign_key: 'BuyerID'
+has_many :products
+has_many :history
+has_many :address
 
 ## product テーブル
-| column        | type          | options      |
-|---------------|---------------|--------------|
-| ProductID(PK) | integer       | null: false  |
-| Image         | text          | null: false  |
-| ProductName   | string        | null: false  |
-| Description   | text          | null: false  |
-| Category      | string        | null: false  |
-| Condition     | string        | null: false  |
-| ShippingArea  | string        | null: false  |
-| ShippingDays  | string        | null: false  |
-| Price         | integer       | null: false  |
-| SellerID(FK)  | integer       | null: false  |
+| column           | type          | options      |
+|------------------|---------------|--------------|
+| user_id          | integer       | null: false  |
+| product_name     | string        | null: false  |
+| description      | text          | null: false  |
+| category_id      | integer       | null: false  |
+| condition_id     | integer       | null: false  |
+| shipping_cost_id | integer       | null: false  |
+| shipping_area_id | integer       | null: false  |
+| shipping_days_id | integer       | null: false  |
+| price            | integer       | null: false  |
 
+belongs_to :user
+has_one :history
 
-belongs_to :user, foreign_key: 'SellerID'
-has_one :transaction
+## address テーブル
+| column             | type      | options                |
+|--------------------|-----------|------------------------|
+| postal_code        | string    | null: false            |
+| prefecture         | string    | null: false            |
+| city               | string    | null: false            |
+| street_address     | string    | null: false            |
+| building_name      | string    | null: false            |
+| phone_number       | integer   | null: false            |
 
-## transaction テーブル
+belongs_to :user
+
+## history テーブル
 | column            | type      | options                |
 |-------------------|-----------|------------------------|
-| TransactionID(PK) | integer   | null: false            |
-| ProductID(FK)     | integer   | null: false            |
-| BuyerID(FK)       | integer   | null: false            |
-| PostalCode        | string    | null: false            |
-| Prefecture        | string    | null: false            |
-| City              | string    | null: false            |
-| StreetAddress     | string    | null: false            |
-| BuildingName      | string    |                        |
-| PhoneNumber       | integer   | null: false            |
+| product           | string    | null: false            |
+| user_id           | string    | null: false            |
 
+belongs_to :user
 belongs_to :product
-belongs_to :user, foreign_key: 'BuyerID'
