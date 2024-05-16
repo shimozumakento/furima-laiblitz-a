@@ -58,6 +58,7 @@ has_one :history
 ## addresses テーブル
 | column             | type      | options                |
 |--------------------|-----------|------------------------|
+| history            | references| null: false foreign_key: true           |
 | postal_code        | string    | null: false            |
 | shipping_area_id   | integer   | null: false            |
 | city               | string    | null: false            |
@@ -70,9 +71,10 @@ belongs_to :history
 ## histories テーブル
 | column            | type      | options                                 |
 |-------------------|-----------|-----------------------------------------|
-| product           | integer   | null: false foreign_key: true           |
-| user              | integer   | null: false foreign_key: true           |
-| address           | integer   | null: false foreign_key: true           |
+| product           | references   | null: false foreign_key: true           |
+| user              | references   | null: false foreign_key: true           |
+
+
 
 belongs_to :user
 belongs_to :product
