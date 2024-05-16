@@ -65,7 +65,6 @@ has_one :history
 | building_name      | string    |                        |
 | phone_number       | string    | null: false            |
 
-belongs_to :user
 belongs_to :history
 
 ## histories テーブル
@@ -73,6 +72,7 @@ belongs_to :history
 |-------------------|-----------|-----------------------------------------|
 | product           | integer   | null: false foreign_key: true           |
 | user              | integer   | null: false foreign_key: true           |
+| address           | integer   | null: false foreign_key: true           |
 
 belongs_to :user
 belongs_to :product
