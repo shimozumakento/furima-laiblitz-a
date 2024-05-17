@@ -3,12 +3,12 @@ class ProductsController < ApplicationController
   end
 
   def new
-    @Product=Product.new
+    @product=Product.new
   end
 
   def create
-    @Product = Product.new(product_params)
-    if @Product.save
+    @product = Product.new(product_params)
+    if @product.save
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
