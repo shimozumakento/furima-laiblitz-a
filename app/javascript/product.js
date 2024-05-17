@@ -16,3 +16,6 @@ priceInput.addEventListener("input", function() {
   salesFeeOutput.textContent = Math.floor(fee) ;
   profitOutput.textContent =   profit ;
 });
+
+
+

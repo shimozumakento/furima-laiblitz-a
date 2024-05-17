@@ -7,7 +7,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    Product.create(product_params)
+    @Product = Product.new(product_params)
+    if @Product.save
+      redirect_to root_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
