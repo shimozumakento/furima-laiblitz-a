@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   validates :image, presence: true
   validates :product_name, presence: true
@@ -22,4 +23,5 @@ class Product < ApplicationRecord
 
   has_one_attached :image
   belongs_to :user
+
 end
