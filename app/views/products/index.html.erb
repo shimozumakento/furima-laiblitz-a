@@ -126,7 +126,9 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
+
       <% if @products.any? %>
+
       <% @products.each do |product| %>
       <li class='list'>
         <%= link_to product_path(product) do %>
@@ -145,7 +147,9 @@
             <%= product.product_name %>
           </h3>
           <div class='item-price'>
+
             <span><%= product.price %>円<br><%= product.shipping_cost.name %></span>
+
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -156,9 +160,11 @@
       </li>
       <% end %>
 
+
        <% else %>
       <li class='list'>
         <%= link_to "#" do %>
+
         <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
         <div class='item-info'>
           <h3 class='item-name'>
@@ -175,6 +181,7 @@
         <% end %>
       </li>
       <% end %>
+
     </ul>
   </div>
 </div>
