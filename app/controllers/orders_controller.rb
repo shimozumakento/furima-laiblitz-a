@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @product = Product.find(params[:product_id])
     @history = History.new(user_id: current_user.id, product_id: @product.id)
 
@@ -22,6 +23,10 @@ class OrdersController < ApplicationController
   
 
   private
+  def order_params
+    params.require(:order).permit(:token)
+  end
+  
   def history_params
     params.require(:history_address).permit(:postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number).merge(history_id: @history.id)
   end
