@@ -6,7 +6,7 @@ const pay = () => {
 
   if (numberForm && expiryForm && cvcForm && form) {
     if (!window.payjp) {
-      window.payjp = Payjp('');
+      window.payjp = Payjp(ENV["PAYJP_PUBLIC_KEY"]);
     }
     const elements = window.payjp.elements();
     const numberElement = elements.create('cardNumber');
