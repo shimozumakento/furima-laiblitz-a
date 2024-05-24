@@ -8,6 +8,7 @@ const pay = () => {
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
+
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
     payjp.createToken(numberElement).then(function (response) {
@@ -15,7 +16,8 @@ const pay = () => {
       } else {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
-        const tokenObj = `<input value=${token} name='token' type="hidden">`;
+        const tokenObj = `<input value=${token} name='token' >`;
+        debugger
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
       numberElement.clear();
@@ -27,4 +29,4 @@ const pay = () => {
   });
 };
 
-window.addEventListener("load", pay);
+window.addEventListener("turbo:load", pay);

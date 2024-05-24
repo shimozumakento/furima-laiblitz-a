@@ -8,30 +8,37 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
-    @product = Product.find(params[:product_id])
-    @history = History.new(user_id: current_user.id, product_id: @product.id)
-
-    if @history.save
-      @address=Address.new(history_params)
-      if @address.save
-        redirect_to root_path
-      end
+  @product = Product.find(params[:product_id])
+  @history_address = HistoryAddress.new(history_params)
+  
+  if @history_address.valid?
+    @history_address.save
+    if pay_item
+      redirect_to root_path
+    else
+      render :index, status: :unprocessable_entity
     end
+  else 
+    render :index, status: :unprocessable_entity
   end
-    
-  
 
-  private
-  def order_params
-    params.require(:order).permit(:token)
-  end
-  
-  def history_params
-    params.require(:history_address).permit(:postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number).merge(history_id: @history.id)
-  end
-  
 end
 
 
+  private
 
+  def pay_item
+    Payjp.api_key = "sk_test_9ce792f31294b41c42f54fc6"
+    Payjp::Charge.create(
+     amount: @product.price,
+     card: params[:token],
+     currency: 'jpy'
+    )
+  end
+
+
+
+  def history_params
+    params.require(:history_address).permit(:postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number, :user_id, :product_id)
+  end
+end
