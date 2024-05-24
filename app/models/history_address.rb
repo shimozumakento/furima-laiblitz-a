@@ -4,12 +4,14 @@ class HistoryAddress
   attr_accessor :user_id, :product_id, :postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number,:token
 
   
-
-  validates :postal_code, presence: true, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }
-  validates :shipping_area_id, presence: true, numericality: { other_than: 1, message: "can't be blank" }
-  validates :city, presence: true
-  validates :street_address, presence: true
-  validates :phone_number, presence: true, length: { minimum: 10, maximum: 11 }, format: { with: /\A\d+\z/, message: "Input only numbers" }
+  with_options presence: true do
+    validates :postal_code, format: { with: /\A\d{3}-\d{4}\z/, message: "is invalid. Include hyphen(-)" }
+    validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank" }
+    validates :city
+    validates :street_address
+    validates :phone_number, length: { minimum: 10, maximum: 11 }, format: { with: /\A\d+\z/, message: "Input only numbers" }
+  end
+  
 
   validates :token, presence: true
   
