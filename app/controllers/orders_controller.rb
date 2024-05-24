@@ -28,7 +28,7 @@ end
   private
 
   def pay_item
-    Payjp.api_key = ""
+    Payjp.api_key = "sk_test_9ce792f31294b41c42f54fc6"
     Payjp::Charge.create(
      amount: @product.price,
      card: params[:token],
@@ -39,6 +39,6 @@ end
 
 
   def history_params
-    params.require(:history_address).permit(:postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number, :user_id, :product_id)
+    params.require(:history_address).permit(:postal_code, :shipping_area_id, :city, :street_address, :building_name, :phone_number, :user_id, :product_id).merge(token: params[:token])
   end
 end

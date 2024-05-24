@@ -10,12 +10,9 @@ class HistoryAddress
     validates :city
     validates :street_address
     validates :phone_number, length: { minimum: 10, maximum: 11 }, format: { with: /\A\d+\z/, message: "Input only numbers" }
+    validates :token
   end
   
-
-  validates :token, presence: true
-  
-
 
 
 
