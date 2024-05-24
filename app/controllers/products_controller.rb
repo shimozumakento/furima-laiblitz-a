@@ -1,11 +1,13 @@
 class ProductsController < ApplicationController
+
+  before_action :check_edit_ownership, only:[:edit]
   before_action :authenticate_user!, only:[:new,:create, :edit, :update, :destroy]
   before_action :find_product, only:[:show, :edit, :update, :destroy]
 
+
+
   def index
-
     @products = Product.all.order(created_at: :desc)
-
   end
 
   def new
@@ -22,6 +24,10 @@ class ProductsController < ApplicationController
   end
 
   def show
+
+    @product = Product.find(params[:id])
+    @sold_out = History.exists?(product_id: @product.id)
+
   end
 
   def edit
@@ -54,6 +60,15 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:product_name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+  end
+
+  def check_edit_ownership
+    product = Product.find(params[:id])
+    if current_user
+      if product.user != current_user && History.exists?(product_id: product.id)
+        redirect_to root_path
+      end
+    end
   end
 
 end
