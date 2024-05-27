@@ -69,6 +69,21 @@
       </tbody>
     </table>
     <div class="option">
+      <% if @user && @user.followed_by?(current_user) %>
+        <div class="follow-btn following">
+          <%= link_to user_relationships_path(@user.id), class: "btn", data: { turbo_method: :delete } do %>
+            <%= image_tag "follow.png", class: "follow-icon", width: "20", height: "20" %>
+            <span>フォロー中</span>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="follow-btn">
+          <%= link_to user_relationships_path(@user.id), class: "btn", data: { turbo_method: :post } do %>
+            <%= image_tag "follow.png", class: "follow-icon", width: "20", height: "20" %>
+            <span>フォローする</span>
+          <% end %>
+        </div>
+      <% end %>
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
         <span>お気に入り 0</span>

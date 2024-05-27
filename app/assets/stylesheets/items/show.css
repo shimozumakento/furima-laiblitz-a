@@ -105,6 +105,27 @@
   position: relative;
 }
 
+.follow-btn {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  padding: 1vh 0;
+  border: 2px solid #00aaff; /* フォローボタンの枠線色 */
+}
+
+.follow-btn.following {
+  color: white;
+  background-color: #00aaff; /* フォロー中ボタンの背景色 */
+}
+
+.follow-icon {
+  margin-right: 5px;
+}
+
 .favorite-btn {
   border-radius: 40px;
   width: 15vw;
