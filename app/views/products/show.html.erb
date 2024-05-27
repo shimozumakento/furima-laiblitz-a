@@ -70,19 +70,19 @@
     </table>
     <div class="option">
       <% if @user && @user != current_user && @user.followed_by?(current_user) %>
-        <div class="follow-btn following">
-          <%= link_to user_relationships_path(@user.id), class: "btn", data: { turbo_method: :delete } do %>
+        <%= link_to user_relationships_path(@user.id), class: "btn follow-btn following", data: { turbo_method: :delete } do %>
+          <div>
             <%= image_tag "follow.png", class: "follow-icon", width: "20", height: "20" %>
             <span>フォロー中</span>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% elsif @user && @user != current_user %>
-        <div class="follow-btn">
-          <%= link_to user_relationships_path(@user.id), class: "btn", data: { turbo_method: :post } do %>
+        <%= link_to user_relationships_path(@user.id), class: "btn follow-btn", data: { turbo_method: :post } do %>
+          <div>
             <%= image_tag "follow.png", class: "follow-icon", width: "20", height: "20" %>
             <span>フォローする</span>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
       <div class="favorite-btn">
         <%= image_tag "star.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
