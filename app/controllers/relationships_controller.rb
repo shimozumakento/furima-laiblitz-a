@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  before_action :authenticate_user!, only:[:index,:show]
+  
 
   def index
     @followings = current_user.followings
@@ -22,5 +24,6 @@ class RelationshipsController < ApplicationController
     follow.destroy
     redirect_to root_path
   end
+
 end
 
