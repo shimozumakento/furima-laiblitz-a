@@ -1,29 +1,70 @@
 <%= render "shared/header" %>
 
-<div class="contents row">
-  <p><%= @nickname %>さんの出品一覧</p>
-  <% @products.each do |product| %>
-    <li class='list'>
-      <%= link_to product_path(product) do %>
+ <div class='item-contents'>
+    <h2 class='title'><%= @nickname %>さんの出品一覧</h2>
+    <div class="subtitle" >
+    </div>
+    <ul class='item-lists'>
+
+      <% if @products.any? %>
+
+      <% @products.each do |product| %>
+      <li class='list'>
+        <%= link_to product_path(product) do %>
         <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" if product.image.attached? %>
+
+         
           <% if product.history.present? %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
+           <div class='sold-out'>
+             <span>Sold Out!!</span>
+           </div>
           <% end %>
+
+       
         </div>
         <div class='item-info'>
           <h3 class='item-name'>
             <%= product.product_name %>
           </h3>
           <div class='item-price'>
+
             <span><%= product.price %>円<br><%= product.shipping_cost.name %></span>
+
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
           </div>
         </div>
+        <% end %>
+      </li>
       <% end %>
-    </li> <!-- 追加 -->
-  <% end %>
+
+
+       <% else %>
+      <li class='list'>
+        <%= link_to "#" do %>
+
+        <%= image_tag "https://tech-master.s3.amazonaws.com/uploads/curriculums/images/Rails1-4/sample.jpg", class: "item-img" %>
+        <div class='item-info'>
+          <h3 class='item-name'>
+            商品を出品してね！
+          </h3>
+          <div class='item-price'>
+            <span>99999999円<br>(税込み)</span>
+            <div class='star-btn'>
+              <%= image_tag "star.png", class:"star-icon" %>
+              <span class='star-count'>0</span>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </li>
+      <% end %>
+
+    </ul>
+  </div>
 </div>
 
 <%= render "shared/footer" %>
