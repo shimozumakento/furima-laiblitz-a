@@ -1,20 +1,29 @@
 <%= render "shared/header" %>
 
-<h1>フォローリスト</h1>
+<div class="container">
+  <h1 class="page-title">フォローリスト</h1>
 
-<h2>フォロー中</h2>
-<ul>
-  <% @followings.each do |user| %>
-    <li><%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %></li>
-  <% end %>
-</ul>
+  <div class="follow-section">
+    <h2 class="section-title">フォロー中</h2>
+    <ul class="follow-list">
+      <% @followings.each do |user| %>
+        <li class="follow-item">
+          <%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
-<h2>フォロワー</h2>
-<ul>
-  <% @followers.each do |user| %>
-    <li><%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %></li>
-  <% end %>
-</ul>
-
+  <div class="follow-section">
+    <h2 class="section-title">フォロワー</h2>
+    <ul class="follow-list">
+      <% @followers.each do |user| %>
+        <li class="follow-item">
+          <%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <%= render "shared/footer" %>
