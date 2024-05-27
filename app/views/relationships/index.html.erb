@@ -1,0 +1,20 @@
+<%= render "shared/header" %>
+
+<h1>フォローリスト</h1>
+
+<h2>フォロー中</h2>
+<ul>
+  <% @followings.each do |user| %>
+    <li><%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %></li>
+  <% end %>
+</ul>
+
+<h2>フォロワー</h2>
+<ul>
+  <% @followers.each do |user| %>
+    <li><%= link_to user.nickname, relationship_path(user), class: "user-nickname-link" %></li>
+  <% end %>
+</ul>
+
+
+<%= render "shared/footer" %>
