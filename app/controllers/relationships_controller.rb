@@ -1,4 +1,15 @@
 class RelationshipsController < ApplicationController
+  def index
+    @followings = current_user.followings
+    @followers = current_user.followers
+  end
+
+  def show
+    @user=User.find(params[:id])
+    @nickname = @user.nickname
+    @products = Product.where(user_id: @user.id)
+  end
+
   def create
     follow = current_user.active_relationships.new(follower_id: params[:user_id])
     follow.save

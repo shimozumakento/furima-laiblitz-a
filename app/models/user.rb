@@ -22,6 +22,7 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :following
 
   def followed_by?(user)
+    return false unless user
     follower =  passive_relationships.find_by(following_id: user.id)
     return follower.present?
   end
