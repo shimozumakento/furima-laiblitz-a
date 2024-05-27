@@ -28,6 +28,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @sold_out = History.exists?(product_id: @product.id)
     @user = @product.user
+    @comments = @product.comments.includes(:user)
+    @comment = Comment.new
 
   end
 
