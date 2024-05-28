@@ -83,5 +83,4 @@ document.addEventListener('turbo:load', function() {
     fileFieldsArea.appendChild(newFileField);
     }
 
-
 });

@@ -22,7 +22,7 @@ class Product < ApplicationRecord
 
   validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999  }
 
-  has_one_attached :images
+  has_many_attached :images
   belongs_to :user
   has_one :history
 

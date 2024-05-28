@@ -7,7 +7,7 @@
       <%= @product.product_name %>
     </h2>
     <div class="item-img-content">
-      <%= image_tag @product.images[0] ,class:"item-box-img" %><br>
+      <%= image_tag @product.images[0] ,class:"item-box-img" %>
       <div class="other-images">
         <% @product.images[1..-1].each do |image| %>
         <div class="other-image">
