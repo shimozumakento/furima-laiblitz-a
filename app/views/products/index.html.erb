@@ -133,6 +133,7 @@
       <li class='list'>
         <%= link_to product_path(product) do %>
         <div class='item-img-content'>
+          <%= image_tag product.images[0] %>
           <%= image_tag product.image, class: "item-img" if product.image.attached? %>
 
          

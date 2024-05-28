@@ -226,3 +226,11 @@
   font-weight: bold;
   font-size: 23px;
 }
+
+.other-images {
+  display: flex;
+}
+
+.other-image {
+  margin-right: 10px;
+}

@@ -60,7 +60,7 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:product_name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_day_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:product).permit(:product_name, :description, :category_id, :condition_id, :shipping_cost_id, :shipping_area_id, :shipping_day_id, :price, {images: []}).merge(user_id: current_user.id)
   end
 
   def check_edit_ownership
