@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
+    @product = Product.find(params[:product_id])
     if @comment.save
-      redirect_to product_path(params[:product_id])
+      CommentChannel.broadcast_to @product, { comment: @comment, user: @comment.user } 
     end
   end
 
