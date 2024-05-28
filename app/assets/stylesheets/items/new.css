@@ -89,6 +89,18 @@
   margin-bottom: 15px;
 }
 
+.preview {
+  width: 33vh;
+  height: 33vh;
+}
+
+.preview-image {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 /* /商品画像 */
 
 /* 商品名と商品説明 */
