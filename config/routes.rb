@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root "products#index"
   resources :products do
     resources :orders
+    resources :comments, only: :create
   end
   resources :relationships, only: [:index, :show]
   resources :users do
