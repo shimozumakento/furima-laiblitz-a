@@ -89,29 +89,32 @@
   margin-bottom: 15px;
 }
 
+#previews {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin: 10px;
+}
+
 .preview {
   width: 33vh;
-  height: 33vh;
+  /* height: 33vh; */
+  margin:auto;
+  margin-right: 10px;
 }
 
 .preview-image {
   width: 100%;
   height: 100%;
-}
-
-.other-images {
-  display: flex;
-}
-
-.other-image {
-  margin-right: 10px;
+  margin: 10px ;
 }
 
 .image-delete-button {
   text-align: center;
   border: solid 1px;
   cursor: pointer;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
 /* /商品画像 */
